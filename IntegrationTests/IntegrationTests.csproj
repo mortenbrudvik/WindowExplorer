@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\window-lib\window-lib.csproj" />
+    <ProjectReference Include="..\WindowLib\WindowLib.csproj" />
   </ItemGroup>
 
 </Project>

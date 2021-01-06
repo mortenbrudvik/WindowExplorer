@@ -14,7 +14,8 @@ namespace window_lib
         public IntPtr Handle { get; }
         public string Title => User32.GetWindowText(Handle);
         public bool IsVisible => User32.IsWindowVisible(Handle);
-        public WindowStyles Styles => new WindowStyles(Handle);
+        public string ClassName => User32.GetClassName(Handle);
+        public WindowStyles Styles => new(Handle);
 
         public override bool Equals(object obj)
         {

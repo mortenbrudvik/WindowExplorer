@@ -15,13 +15,17 @@ namespace IntegrationTests
         }
 
         [Fact]
-        public void GetWindows_ShouldWindows_WhenNormalMatchingFilter()
+        public void GetWindows_ShouldFetchWindows_WhenNormalMatchingFilter()
         {
             var factory = new WindowFactory();
             var windows = factory.GetWindows(WindowFilter.IsNormalWindow);
 
             _output.WriteLine("Matches {0} windows", windows.Count);
-            windows.ForEach(win=>_output.WriteLine("Window title: {0}", win.Title));
+            windows.ForEach(win =>
+            {
+                _output.WriteLine("Window title: {0}", win.Title);
+            });
+
             windows.ShouldNotBeEmpty();
         }
     }

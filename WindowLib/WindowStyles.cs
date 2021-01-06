@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using PInvoke;
 using window_lib.Extensions;
 
@@ -10,8 +11,8 @@ namespace window_lib
         private readonly User32.WindowStyles _windowStyles;
         private readonly User32.WindowStylesEx _windowStylesExtended;
 
-        public IEnumerable<Enum> StylesSetFlags => _windowStyles.GetUniqueFlags();
-        public IEnumerable<Enum> StylesExSetFlags => _windowStylesExtended.GetUniqueFlags();
+        public ICollection<string> StylesSetFlags => _windowStyles.GetUniqueFlags().Select(x=>x.ToString()).ToList();
+        public ICollection<string> StylesExSetFlags => _windowStylesExtended.GetUniqueFlags().Select(x=>x.ToString()).ToList();
 
         public WindowStyles(IntPtr handle)
         {
