@@ -8,5 +8,6 @@ namespace ApplicationCore.Interfaces
         string Title { get; }
         bool IsVisible { get; }
         IWindowStyles Styles { get; }
+        string ClassName { get; }
     }
 }
