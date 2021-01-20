@@ -17,7 +17,7 @@ namespace IntegrationTests.TestUtils
         public IList<object> Columns { get; set; }
         public IList<object[]> Rows { get; protected set; }
 
-        public ConsoleTableOptions Options { get; protected set; }
+        public LoggerTableOptions Options { get; protected set; }
         public Type[] ColumnTypes { get; private set; }
 
         public static HashSet<Type> NumericTypes = new HashSet<Type>
@@ -29,11 +29,11 @@ namespace IntegrationTests.TestUtils
         };
 
         public TableLogger(params string[] columns)
-            : this(new ConsoleTableOptions { Columns = new List<string>(columns) })
+            : this(new LoggerTableOptions { Columns = new List<string>(columns) })
         {
         }
 
-        public TableLogger(ConsoleTableOptions options)
+        public TableLogger(LoggerTableOptions options)
         {
             Options = options ?? throw new ArgumentNullException("options");
             Rows = new List<object[]>();
@@ -63,7 +63,7 @@ namespace IntegrationTests.TestUtils
             return this;
         }
 
-        public TableLogger Configure(Action<ConsoleTableOptions> action)
+        public TableLogger Configure(Action<LoggerTableOptions> action)
         {
             action(Options);
             return this;
@@ -278,7 +278,7 @@ namespace IntegrationTests.TestUtils
         }
     }
 
-    public class ConsoleTableOptions
+    public class LoggerTableOptions
     {
         public IEnumerable<string> Columns { get; set; } = new List<string>();
         public bool EnableCount { get; set; } = true;

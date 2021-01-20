@@ -6,8 +6,12 @@ namespace ApplicationCore.Window
     {
         public static bool IsNormalWindow(IWindow window)
         {
-            var styles = window.Styles;
-            return !(styles.IsPopup || styles.IsToolWindow || styles.IsChild ) && styles.HasSizingBorder && !string.IsNullOrWhiteSpace(window.Title);
+            if (IsHiddenWindowStoreApp(window,  window.ClassName)) return false;
+
+            return !window.Styles.IsToolWindow && window.IsVisible;
         }
+
+        private static bool IsHiddenWindowStoreApp(IWindow window, string className) 
+            => (className == "ApplicationFrameWindow" || className == "Windows.UI.Core.CoreWindow") && window.IsCloaked;
     }
 }

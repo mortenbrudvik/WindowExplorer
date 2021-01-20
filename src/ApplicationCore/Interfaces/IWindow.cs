@@ -9,5 +9,8 @@ namespace ApplicationCore.Interfaces
         bool IsVisible { get; }
         IWindowStyles Styles { get; }
         string ClassName { get; }
+        string ProcessName { get; }
+        int ProcessId { get; }
+        bool IsCloaked { get; }
     }
 }
