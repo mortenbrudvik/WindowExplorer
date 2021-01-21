@@ -4,7 +4,7 @@ namespace ApplicationCore.Window
 {
     public static class WindowFilter
     {
-        public static bool IsNormalWindow(IWindow window)
+        public static bool NormalWindow(IWindow window)
         {
             if (IsHiddenWindowStoreApp(window,  window.ClassName)) return false;
 

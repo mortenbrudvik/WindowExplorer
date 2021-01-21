@@ -22,7 +22,7 @@ namespace IntegrationTests
         {
             var factory = new WindowFactory();
 
-            var windows = factory.GetWindows(WindowFilter.IsNormalWindow);
+            var windows = factory.GetWindows(WindowFilter.NormalWindow);
 
             windows.ShouldNotBeEmpty();
             LogAsTableView(windows, _logger);

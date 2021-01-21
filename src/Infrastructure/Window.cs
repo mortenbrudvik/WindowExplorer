@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using ApplicationCore.Interfaces;
+using Infrastructure.Common;
 using PInvoke;
 
 namespace Infrastructure
@@ -29,15 +29,12 @@ namespace Infrastructure
             }
         }
 
-        [DllImport("dwmapi.dll")]
-        private static extern int DwmGetWindowAttribute(IntPtr hWnd, int dwAttribute, out int pvAttribute, int cbAttribute);
-
         public bool IsCloaked
         {
             get
             {
-                const int DWMWA_CLOAKED = 14;
-                DwmGetWindowAttribute(Handle, DWMWA_CLOAKED, out int cloaked, sizeof(int));
+                
+                DwmApi.DwmGetWindowAttribute(Handle, DwmApi.DWMWA_CLOAKED, out int cloaked, sizeof(int));
                 return cloaked != 0;
             }
         } 
