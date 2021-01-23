@@ -12,7 +12,7 @@ namespace IntegrationTests.TestUtils
     ///
     /// changed to work with different logging providers. 
     /// </summary>
-    public class TableLogger
+    public class TestTableLogger
     {
         public IList<object> Columns { get; set; }
         public IList<object[]> Rows { get; protected set; }
@@ -28,26 +28,26 @@ namespace IntegrationTests.TestUtils
             typeof(uint), typeof(float)
         };
 
-        public TableLogger(params string[] columns)
+        public TestTableLogger(params string[] columns)
             : this(new LoggerTableOptions { Columns = new List<string>(columns) })
         {
         }
 
-        public TableLogger(LoggerTableOptions options)
+        public TestTableLogger(LoggerTableOptions options)
         {
             Options = options ?? throw new ArgumentNullException("options");
             Rows = new List<object[]>();
             Columns = new List<object>(options.Columns);
         }
 
-        public TableLogger AddColumn(IEnumerable<string> names)
+        public TestTableLogger AddColumn(IEnumerable<string> names)
         {
             foreach (var name in names)
                 Columns.Add(name);
             return this;
         }
 
-        public TableLogger AddRow(params object[] values)
+        public TestTableLogger AddRow(params object[] values)
         {
             if (values == null)
                 throw new ArgumentNullException(nameof(values));
@@ -63,15 +63,15 @@ namespace IntegrationTests.TestUtils
             return this;
         }
 
-        public TableLogger Configure(Action<LoggerTableOptions> action)
+        public TestTableLogger Configure(Action<LoggerTableOptions> action)
         {
             action(Options);
             return this;
         }
 
-        public static TableLogger From<T>(IEnumerable<T> values)
+        public static TestTableLogger From<T>(IEnumerable<T> values)
         {
-            var table = new TableLogger
+            var table = new TestTableLogger
             {
                 ColumnTypes = GetColumnsType<T>().ToArray()
             };

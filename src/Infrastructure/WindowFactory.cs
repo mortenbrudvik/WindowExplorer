@@ -20,7 +20,7 @@ namespace Infrastructure
             Guard.Against.Null(match, nameof(match));
 
             var windows = new List<IWindow>();
-            User32.EnumWindows((handle, param) =>
+            User32.EnumWindows((handle, _) =>
             {
                 var window = new Window(handle);
                 if(match(window))

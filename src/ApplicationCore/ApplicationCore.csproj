@@ -7,8 +7,4 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" Version="3.0.1" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ValueObjects\" />
-  </ItemGroup>
 </Project>

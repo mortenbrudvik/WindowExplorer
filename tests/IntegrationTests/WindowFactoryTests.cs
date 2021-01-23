@@ -26,6 +26,8 @@ namespace IntegrationTests
 
             windows.ShouldNotBeEmpty();
             LogAsTableView(windows, _logger);
+
+            _logger.WriteLine($"Windows found: {windows.Count}");
         }
     }
 }

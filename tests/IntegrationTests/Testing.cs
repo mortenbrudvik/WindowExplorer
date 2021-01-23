@@ -15,7 +15,7 @@ namespace IntegrationTests
                 OutputTo = new TestOutputAdapter(logger),
                 Columns = new List<string> {"Handle", "Class Name", "Title", "Process Name", "ProcessId"}
             };
-            var tableLogger = new TableLogger(options);
+            var tableLogger = new TestTableLogger(options);
             windows.ForEach(win =>
             {
                 tableLogger.AddRow(win.Handle, win.ClassName.Truncate(40, ""), win.Title.Truncate(40, ""), win.ProcessName.Truncate(30, ""), win.ProcessId);
