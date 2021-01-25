@@ -1,4 +1,5 @@
-﻿using Xunit.Abstractions;
+﻿using Infrastructure;
+using Xunit.Abstractions;
 
 namespace IntegrationTests.TestUtils
 {

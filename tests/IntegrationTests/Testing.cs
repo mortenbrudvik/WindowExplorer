@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ApplicationCore.Extensions;
 using ApplicationCore.Interfaces;
+using Infrastructure;
 using IntegrationTests.TestUtils;
 using Xunit.Abstractions;
 
@@ -15,12 +16,13 @@ namespace IntegrationTests
                 OutputTo = new TestOutputAdapter(logger),
                 Columns = new List<string> {"Handle", "Class Name", "Title", "Process Name", "ProcessId"}
             };
-            var tableLogger = new TestTableLogger(options);
+            var tableLogger = new TableLogger(options);
             windows.ForEach(win =>
             {
                 tableLogger.AddRow(win.Handle, win.ClassName.Truncate(40, ""), win.Title.Truncate(40, ""), win.ProcessName.Truncate(30, ""), win.ProcessId);
             });
             tableLogger.Write(Format.Minimal);
+            logger.WriteLine($"Windows found: {windows.Count}");
         }
 
     }

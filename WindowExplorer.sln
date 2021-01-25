@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApplicationCore", "src\Appl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5AFE7A09-F2A6-4F11-AC8B-102E4CCA074E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WindowExplorer", "src\WindowExplorer\WindowExplorer.csproj", "{70B9C5D1-602B-4AF7-ADDA-154AAF2371B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{9A1600F7-1A6F-4D14-A2A7-23B1B7A7C029}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A1600F7-1A6F-4D14-A2A7-23B1B7A7C029}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A1600F7-1A6F-4D14-A2A7-23B1B7A7C029}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70B9C5D1-602B-4AF7-ADDA-154AAF2371B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70B9C5D1-602B-4AF7-ADDA-154AAF2371B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70B9C5D1-602B-4AF7-ADDA-154AAF2371B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70B9C5D1-602B-4AF7-ADDA-154AAF2371B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
