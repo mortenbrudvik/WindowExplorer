@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using ApplicationCore.Extensions;
 using ApplicationCore.Window;
 using Infrastructure;
@@ -12,6 +13,8 @@ namespace WindowExplorer
         {
             try
             {
+                var watch = new Stopwatch();
+                watch.Start();
                 var windowFactory = new WindowFactory();
                 var windows = windowFactory.GetWindows(WindowFilter.NormalWindow);
 
@@ -22,7 +25,8 @@ namespace WindowExplorer
                     tableLogger.AddRow(win.Handle, win.ClassName.Truncate(50, ""), win.Title.Truncate(50, ""), win.ProcessName.Truncate(30, ""), win.ProcessId);
                 });
                 tableLogger.Write(Format.Minimal);
-                Console.Out.WriteLine($"Windows found: {windows.Count}");
+                watch.Stop();
+                Console.Out.WriteLine($"Windows found: {windows.Count}. Search time: {watch.ElapsedMilliseconds/1000}.{watch.ElapsedMilliseconds%1000} seconds.");
             }
             catch (Exception e)
             {
