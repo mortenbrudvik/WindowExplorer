@@ -39,7 +39,6 @@ namespace Infrastructure
             }
         } 
 
-
         public override bool Equals(object obj)
         {
             return obj != null && Equals((Window)obj);
