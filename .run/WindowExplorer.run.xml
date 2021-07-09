@@ -1,0 +1,6 @@
+﻿<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish WindowExplorer" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish configuration="Release" delete_existing_files="true" platform="Any CPU" runtime="win-x86" self_contained="true" target_folder="$PROJECT_DIR$/src/WindowExplorer/bin/Release/net5.0/publish" target_framework="net5.0" uuid_high="8122740905991686903" uuid_low="-5919395349714996808" />
+    <method v="2" />
+  </configuration>
+</component>
