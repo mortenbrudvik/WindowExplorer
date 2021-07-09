@@ -14,16 +14,16 @@ namespace WindowExplorer
 {
     internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
                 var windowService = new WindowService(new WindowFactory());
                 
                 Parser.Default.ParseArguments<Options>(args)
-                    .WithParsed(o =>
+                    .WithParsed(options =>
                     {
-                        if (o.Dump)
+                        if (options.Dump)
                             WriteToFile(windowService);
                         else
                             WriteToConsole(windowService);
@@ -63,13 +63,10 @@ namespace WindowExplorer
             var windows = windowService.GetWindows();
 
             var options = new LoggerTableOptions
-                {Columns = new List<string> {"Handle", "Class Name", "Title", "Process Name", "ProcessId"}};
+                {Columns = new List<string> {"Handle", "Class Name", "Title", "Process Name", "ProcessId", "Process Arguments"}};
             var tableLogger = new TableLogger(options);
-            windows.ToList().ForEach(win =>
-            {
-                tableLogger.AddRow(win.Handle, win.ClassName.Truncate(70, ""), win.Title.Truncate(70, ""),
-                    win.ProcessName.Truncate(30, ""), win.ProcessId);
-            });
+            windows.ToList().ForEach(win =>             {
+                tableLogger.AddRow(win.Handle, win.ClassName.Truncate(70, ""), win.Title.Truncate(70, ""), win.ProcessName.Truncate(30, ""), win.ProcessId, win.ProcessArguments.Truncate(120)); });
             tableLogger.Write(Format.Minimal);
             watch.Stop();
             Console.Out.WriteLine($"Windows found: {windows.Count}. Search time: {watch.ElapsedMilliseconds / 1000}.{watch.ElapsedMilliseconds % 1000} seconds.");

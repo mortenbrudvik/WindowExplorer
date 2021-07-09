@@ -11,16 +11,14 @@ namespace ApplicationCore.Models
             ClassName = window.ClassName;
             ProcessName = window.ProcessName;
             ProcessId = window.ProcessId;
+            ProcessArguments = window.GetCommandLine();
         }
 
-        public int ProcessId { get; set; }
-
-        public string Handle { get; set; }
-
-        public string ProcessName { get; set; }
-
-        public string ClassName { get; set; }
-
-        public string Title { get; set; }
+        public int ProcessId { get; }
+        public string ProcessArguments { get; }
+        public string Handle { get; }
+        public string ProcessName { get; }
+        public string ClassName { get; }
+        public string Title { get; }
     }
 }

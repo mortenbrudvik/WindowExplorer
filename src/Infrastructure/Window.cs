@@ -1,5 +1,7 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
+using System.Management;
 using ApplicationCore.Interfaces;
 using Infrastructure.Common;
 using PInvoke;
@@ -52,6 +54,24 @@ namespace Infrastructure
         public override int GetHashCode()
         {
             return ((int)Handle).GetHashCode();
+        }
+        
+        public string GetCommandLine()
+        {
+            try
+            {
+                var process = Process.GetProcessById(ProcessId);
+
+                var query = $"SELECT CommandLine FROM Win32_Process WHERE ProcessId = {process.Id}";
+
+                using var searcher = new ManagementObjectSearcher(query);
+                using var result = searcher.Get();
+                return result.Cast<ManagementBaseObject>().SingleOrDefault()?["CommandLine"]?.ToString() ?? "";
+            }
+            catch (Exception) // Swallow
+            {
+                return "";
+            }
         }
     }
 }

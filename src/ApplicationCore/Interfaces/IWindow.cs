@@ -12,5 +12,6 @@ namespace ApplicationCore.Interfaces
         string ProcessName { get; }
         int ProcessId { get; }
         bool IsCloaked { get; }
+        string GetCommandLine();
     }
 }
