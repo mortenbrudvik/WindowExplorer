@@ -15,10 +15,10 @@ namespace ApplicationCore.Services
             _factory = factory;
         }
         
-        public IReadOnlyCollection<WindowModel> GetWindows()
+        public IReadOnlyCollection<WindowModel> GetWindows(bool includeStyleFlags)
         {
             return _factory.GetWindows(WindowFilter.NormalWindow)
-                .Select(x => new WindowModel(x)).ToList();
+                .Select(x => new WindowModel(x, includeStyleFlags)).ToList();
         }
     }
 }

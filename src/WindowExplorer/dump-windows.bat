@@ -1,1 +1,1 @@
-WindowExplorer.exe -d
+WindowExplorer.exe -d --include-style-flags

@@ -8,8 +8,11 @@ namespace ApplicationCore.Window
         {
             if (IsHiddenWindowStoreApp(window,  window.ClassName)) return false;
 
-            return !window.Styles.IsToolWindow && window.IsVisible;
+            return !IsToolWindow(window.ExtendedStyles) && window.IsVisible;
         }
+        
+        private static bool IsToolWindow(ExtendedWindowStyleFlags styleFlags) =>
+            (styleFlags & ExtendedWindowStyleFlags.WS_EX_TOOLWINDOW) == ExtendedWindowStyleFlags.WS_EX_TOOLWINDOW;
 
         private static bool IsHiddenWindowStoreApp(IWindow window, string className) 
             => (className == "ApplicationFrameWindow" || className == "Windows.UI.Core.CoreWindow") && window.IsCloaked;

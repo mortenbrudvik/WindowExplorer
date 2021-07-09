@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Management;
 using ApplicationCore.Interfaces;
+using ApplicationCore.Window;
 using Infrastructure.Common;
 using PInvoke;
 
@@ -10,16 +11,14 @@ namespace Infrastructure
 {
     public class Window : IWindow
     {
-        public Window(IntPtr handle)
-        {
-            Handle = handle;
-        }
+        public Window(IntPtr handle) => Handle = handle;
 
         public IntPtr Handle { get; }
         public string Title => User32.GetWindowText(Handle);
         public bool IsVisible => User32.IsWindowVisible(Handle);
         public string ClassName => User32.GetClassName(Handle);
-        public IWindowStyles Styles => new WindowStyles(Handle);
+        public WindowStyleFlags Styles => GetWindowStyles(Handle);
+        public ExtendedWindowStyleFlags ExtendedStyles => GetExtendedWindowStyles(Handle);
 
         public string ProcessName => Process.GetProcessById(ProcessId).ProcessName.Trim();
         public int ProcessId
@@ -73,5 +72,11 @@ namespace Infrastructure
                 return "";
             }
         }
+        
+        private static ExtendedWindowStyleFlags GetExtendedWindowStyles(IntPtr handle) =>
+            (ExtendedWindowStyleFlags)User32.GetWindowLong(handle, User32.WindowLongIndexFlags.GWL_EXSTYLE);
+
+        private static WindowStyleFlags GetWindowStyles(IntPtr handle) =>
+            (WindowStyleFlags)User32.GetWindowLong(handle, User32.WindowLongIndexFlags.GWL_STYLE);
     }
 }
