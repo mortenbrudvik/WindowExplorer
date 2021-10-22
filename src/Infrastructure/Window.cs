@@ -2,9 +2,11 @@ using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Management;
+using System.Runtime.InteropServices;
 using ApplicationCore.Interfaces;
 using ApplicationCore.Window;
 using Infrastructure.Common;
+using JetBrains.Annotations;
 using PInvoke;
 
 namespace Infrastructure
@@ -16,6 +18,11 @@ namespace Infrastructure
         public IntPtr Handle { get; }
         public string Title => User32.GetWindowText(Handle);
         public bool IsVisible => User32.IsWindowVisible(Handle);
+        public bool IsWindow => User32.IsWindow(Handle);
+
+        public bool IsOwner => User32.GetWindow(Handle, User32.GetWindowCommands.GW_OWNER) != null;
+        public bool IsTaskListDeleted => GetProp(Handle, "ITaskList_Deleted") != IntPtr.Zero;
+
         public string ClassName => User32.GetClassName(Handle);
         public WindowStyleFlags Styles => GetWindowStyles(Handle);
         public ExtendedWindowStyleFlags ExtendedStyles => GetExtendedWindowStyles(Handle);
@@ -78,5 +85,8 @@ namespace Infrastructure
 
         private static WindowStyleFlags GetWindowStyles(IntPtr handle) =>
             (WindowStyleFlags)User32.GetWindowLong(handle, User32.WindowLongIndexFlags.GWL_STYLE);
+        
+        [DllImport("user32.dll", SetLastError = true, BestFitMapping = false)]
+        private static extern IntPtr GetProp(IntPtr hWnd, string lpString);
     }
 }

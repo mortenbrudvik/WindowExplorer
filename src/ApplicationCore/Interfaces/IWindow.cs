@@ -8,6 +8,9 @@ namespace ApplicationCore.Interfaces
         IntPtr Handle { get; }
         string Title { get; }
         bool IsVisible { get; }
+        bool IsWindow { get; }
+        bool IsOwner { get; }
+        bool IsTaskListDeleted { get; }
         WindowStyleFlags Styles { get; }
         ExtendedWindowStyleFlags ExtendedStyles { get; }
         string ClassName { get; }
